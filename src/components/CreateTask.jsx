@@ -18,6 +18,7 @@ function CreateTask({ onCreateTask }) {
     setPriority(e.target.value);
   }
 
+  // TODO: spostare la funzionalità per il completamento della task da qui all'interno della lista delle task! una task non può mai esser creata già completata!
   function handleCompletion(e) {
     setIsCompleted(e.target.checked);
   }
