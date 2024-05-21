@@ -30,9 +30,18 @@ function CreateTask({onCreateTask}) {
   function handleSubmit(e){
     e.preventDefault();
 
+    // validation checks
     if(title.length == 0){
-      alert('The title is empty');
-      return ;
+      alert('Title field is empty!');
+      return;
+    }
+    if(description.length == 0){
+      alert('Description field is empty!');
+      return;
+    }
+    if(priority == null || priority == ''){
+      alert('Priority field is empty!');
+      return;
     }
 
     const task = {
@@ -66,6 +75,7 @@ return (
         <div>
           <label>Priorità: </label>
           <select value={priority} onChange={handlePriorityChange}>
+            <option>Select the priority</option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
