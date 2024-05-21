@@ -1,45 +1,40 @@
-// import
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-// task prop
-// titolo
-// descrizione
-// priorita (bassa-media-alta)
-
-// funzione componente
-function CreateTask({onCreateTask}) {
-
-  //states
+function CreateTask({ onCreateTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('');
+  const [isCompleted, setIsCompleted] = useState(false);
 
-  // funzioni
-  function handleTitleChange(e){
+  function handleTitleChange(e) {
     setTitle(e.target.value);
   }
 
-  function handleDescriptionChange(e){
+  function handleDescriptionChange(e) {
     setDescription(e.target.value);
   }
 
-  function handlePriorityChange(e){
+  function handlePriorityChange(e) {
     setPriority(e.target.value);
   }
 
-  function handleSubmit(e){
+  function handleCompletion(e) {
+    setIsCompleted(e.target.checked);
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
 
-    // validation checks
-    if(title.length == 0){
+    // Validation checks
+    if (title.trim() === '') {
       alert('Title field is empty!');
       return;
     }
-    if(description.length == 0){
+    if (description.trim() === '') {
       alert('Description field is empty!');
       return;
     }
-    if(priority == null || priority == ''){
+    if (priority === '' || priority === 'Select the priority') {
       alert('Priority field is empty!');
       return;
     }
@@ -47,7 +42,8 @@ function CreateTask({onCreateTask}) {
     const task = {
       title,
       description,
-      priority
+      priority,
+      isCompleted
     };
 
     // Passa la nuova task al genitore per la creazione
@@ -56,36 +52,47 @@ function CreateTask({onCreateTask}) {
     // Reset campi del modulo
     setTitle('');
     setDescription('');
-    setPriority('low');
+    setPriority('');
+    setIsCompleted(false);
   }
 
-return (
+  return (
     <div className="create-task">
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Titolo: </label>
+        <div className="title">
+          <label>Title: </label>
           <input type="text" value={title} onChange={handleTitleChange} />
-          <br/><br/>
+          <br /><br />
         </div>
-        <div>
-          <label>Descrizione: </label>
+        <div className="description">
+          <label>Description: </label>
           <textarea value={description} onChange={handleDescriptionChange} />
-          <br/><br/>
+          <br /><br />
         </div>
-        <div>
-          <label>Priorità: </label>
+        <div className="priority">
+          <label>Priority: </label>
           <select value={priority} onChange={handlePriorityChange}>
             <option>Select the priority</option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
           </select>
-          <br/><br/>
+          <br /><br />
+        </div>
+        <div className="completed">
+          <label>Completed: </label>
+          <input
+            type="checkbox"
+            name="completed-checkbox"
+            checked={isCompleted}
+            onChange={handleCompletion}
+          />
+          <br /><br />
         </div>
         <button type="submit">Create</button>
       </form>
     </div>
-  )
+  );
 }
 
 export default CreateTask;
