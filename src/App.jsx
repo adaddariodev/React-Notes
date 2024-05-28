@@ -3,11 +3,19 @@ import CreateTask from './components/CreateTask';
 import TasksList from './components/TasksList';
 
 function App() {
+  //tasks state 
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (newTask) => {
+  // create a new array to store the tasks.
+  function addTask(newTask){
     setTasks([...tasks, newTask]);
-  };
+  }
+
+  // filters all the tasks with an index different than the one from the task we want to remove, and return the array with all the tasks except the one we want to remove.
+  function deleteTask(index){
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  }
 
   return (
     <div>
@@ -19,7 +27,7 @@ function App() {
       <hr />
       {/* Show list */}
       <h3><u>Tasks List:</u></h3>
-      <TasksList listOfTasks={tasks} />
+      <TasksList tasks={tasks} onDeleteTask={deleteTask}/>
     </div>
   );
 }

@@ -12,6 +12,7 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
+    'no-unused-vars': 'off', // completely disable the check on the variables NOT USED 
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [
       'warn',
