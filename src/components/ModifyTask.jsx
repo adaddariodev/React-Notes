@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-function CreateTask({ onCreateTask }) {
+function ModifyTask({ onModifyTask }){
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('');
+  const [isCompleted, setIsCompleted] = useState(false);
 
   function handleTitleChange(e) {
     setTitle(e.target.value);
@@ -16,6 +17,10 @@ function CreateTask({ onCreateTask }) {
 
   function handlePriorityChange(e) {
     setPriority(e.target.value);
+  }
+
+  function handleCompletion(e) {
+    setIsCompleted(e.target.checked);
   }
 
   function handleSubmit(e) {
@@ -35,23 +40,25 @@ function CreateTask({ onCreateTask }) {
       return;
     }
 
-    const task = {
+    const newTask = {
       title,
       description,
       priority,
+      isCompleted
     };
 
     // Passa la nuova task al genitore per la creazione
-    onCreateTask(task);
+    onModifyTask(newTask);
 
     // Reset campi del modulo
     setTitle('');
     setDescription('');
     setPriority('');
+    setIsCompleted(false);
   }
 
   return (
-    <div className="create-task">
+    <div className="modifyTask">
       <form onSubmit={handleSubmit}>
         <div className="title">
           <label>Title: </label>
@@ -73,14 +80,25 @@ function CreateTask({ onCreateTask }) {
           </select>
           <br /><br />
         </div>
-        <button type="submit">Create</button>
+        <div className="completed">
+          <label>Completed: </label>
+          <input
+            type="checkbox"
+            name="completed-checkbox"
+            checked={isCompleted}
+            onChange={handleCompletion}
+          />
+          <br /><br />
+        </div>
+        <button type="submit">Apply</button>
       </form>
     </div>
   );
 }
 
-CreateTask.propTypes = {
-  onCreateTask: PropTypes.func.isRequired,
+// props validation
+ModifyTask.propTypes = {
+  onModifyTask: PropTypes.func.isRequired,
 };
 
-export default CreateTask;
+export default ModifyTask;
