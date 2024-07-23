@@ -1,8 +1,16 @@
-# React + Vite
+# React + Vite Note App 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Updates and Infos 📣
 
-Currently, two official plugins are available:
+‼ The project contains a barebone Front-End only ⚛React app, on which I am currently working on and testing making it my sandbox while learning React.
+‼ The project scope is to create a modern-looking React NOTES app, like a reminder app (you know what I mean... 😂).
+‼ The project for now sit in silent, while I work on other things, but I want this to be finished! 🤞
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ 
+## What's Next 🔜
+
+In the next version of this project I want to integrate and utilize 🍃TAILWINDCSS in order to handle and create a nice front end!
+Not only that! For now the project as you can see has no Back-End, and I want to create some nice .NET logics to handle what I what to do!
+Hope soon 😂
+
+Thanks for coming by! 🙏
